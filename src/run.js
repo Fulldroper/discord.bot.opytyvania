@@ -4,6 +4,8 @@
   process.env.NODE_ENV || await require('dotenv').config({ debug: false })
   // req discord framework
   const { Client, GatewayIntentBits } = await require('discord.js');  
+  // mout moded prorotypes
+  require("moded_prototypes")()
   // init discord bot && rest obj
   const bot = new Client({ intents: [
     GatewayIntentBits.Guilds,
