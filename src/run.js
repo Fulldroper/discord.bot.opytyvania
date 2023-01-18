@@ -5,7 +5,7 @@
   // req discord framework
   const { Client, GatewayIntentBits } = await require('discord.js');  
   // mout moded prorotypes
-  require("./moded_prototypes")()
+  (require("./moded_prototypes"))()
   // init discord bot && rest obj
   const bot = new Client({ intents: [
     GatewayIntentBits.Guilds,
@@ -96,11 +96,11 @@
       `🚀 Start as ${this.user.tag} at `, new Date,
       `\n📊 Servers:`,this.guilds.cache.size,` Users:`, this.users_counter || 0,` Commands:`, Object.keys(this.commands).length,
       `\n📜 Description: \n\t+ ${description_moded} \n\t- ${await this.description}`,
-      `\n🗃️  Commands:`, Object.keys(this.commands)
+      `\n🗃️  Commands:`, Object.keys(this.commands),
+      `\n started with interval ${process.env.npm_package_config_interval}ms`
     )
     // starting loop
     const { close } = this.commands["create"]
-    this.log(`[readyLoop] started with interval ${process.env.npm_package_config_interval}ms`);
     while (true) {
       (async function() {
         const loop = await this.db.get(`${this.user.username}:loop`)
