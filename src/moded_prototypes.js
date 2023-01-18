@@ -28,6 +28,17 @@ module.exports = () => {
       }
     }
   }
+  Number.prototype.toFixed = function(num) {
+    const n = `${this}`
+    let payload = ''
+    for (let i = 0; i < (num - n.length); i++) {
+      payload+= '0'
+    }
+    return (payload+n);
+  }
+  Array.prototype.rand = function () {
+    return this[Math.floor(Math.random() * this.length)]
+  }
   Number.prototype.msToDate = function (x) {
       if (!x) x = this;
       x = Number.parseInt(x, 10)
@@ -48,17 +59,6 @@ module.exports = () => {
         m : f(toMin),
         s : f(toSec)
       }; 
-  }
-  Number.prototype.toFixed = function(num) {
-    const n = `${this}`
-    let payload = ''
-    for (let i = 0; i < (num - n.length); i++) {
-      payload+= '0'
-    }
-    return (payload+n);
-  }
-  Array.prototype.rand = function () {
-    return this[Math.floor(Math.random() * this.length)]
   }
   /**
    * Merges given count and on of declensions: one, few or many into a string

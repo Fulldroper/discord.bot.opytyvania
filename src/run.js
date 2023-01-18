@@ -55,6 +55,63 @@
   // run bot
   bot.login(process.env.TOKEN)
   bot.on("ready", async function () {
+    Number.prototype.msToDate = function (x) {
+      if (!x) x = this;
+      x = Number.parseInt(x, 10)
+      const 
+        toSec = 1000,
+        toMin = toSec * 60,
+        toHour = toMin * 60,
+        toDay = toHour * 24,
+        toYears = toDay * 365.25,
+        f = b => {
+            const n = Math.trunc(x / b);
+            return (n > 0 ? (x = x - (n * b), n) : undefined);
+        }
+      return {
+        y : f(toYears),
+        d : f(toDay),
+        h : f(toHour),
+        m : f(toMin),
+        s : f(toSec)
+      }; 
+  }
+  /**
+   * Merges given count and on of declensions: one, few or many into a string
+   * @param {Object} config - required configuration from number, and declensions for quantities one, few and many
+   * @param {number} config.count - quantity of something
+   * @param {string} config.one - word describing one
+   * @param {string} config.few - a word that describes several
+   * @param {string} config.many - a word that describes a lot
+   * @example
+   * declension({ count: 5, one: 'користувач', few: 'користувача', many: 'користувачів' });
+   * // 5 користувачів
+   * @return {string} a string from a number and the desired declension
+   */
+   Number.prototype.declension = function(options = {}) {
+    const {
+      one = 'користувач',
+      few = 'користувача',
+      many = 'користувачів',
+      count = this
+    } = options
+    if (Number.isNaN(count)) return false;
+    // reserve declaration
+    const declensionNumbers = {
+      '1': one,
+      '2': few,
+      '3': few,
+      '4': few,
+      '5': many,
+      '6': many,
+      '7': many,
+      '8': many,
+      '9': many,
+      '0': many
+    }
+    // check declension and return
+    return `${count} ${declensionNumbers[String(count).slice(-1)]}`    
+  }
     // add command builder
     await require("fd-dcc").call(this)
     // create site
