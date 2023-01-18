@@ -598,8 +598,9 @@ module.exports.modal = async function (interaction) {
       }
       break;
     case "publish":
-      const exist = await this.db.get(`${this.user.username}:loop`);
+      const exist = await this.db.get(`${this.user.username}:loop`) || [];
       for (const task of exist) {
+        if (!task) break;
         const {guildId, channelId, voteId, messageId} = task
         if (guildId == interaction.guildId && channelId == interaction.channel.id) {
           if (voteId == interaction.meta[2] || messageId == msg.id) {
