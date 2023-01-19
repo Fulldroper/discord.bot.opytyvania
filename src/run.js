@@ -164,6 +164,7 @@
         if (!loop || loop.length <= 0) return
         for (const o of loop) {
           if (new Date().getTime() - o.startOn >= o.time) {
+            console.log("close", o)
             close.call(this, o)
           }
         }
