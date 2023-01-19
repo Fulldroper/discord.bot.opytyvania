@@ -603,7 +603,7 @@ module.exports.modal = async function (interaction) {
         if (!task) break;
         const {guildId, channelId, voteId, messageId} = task
         if (guildId == interaction.guildId && channelId == interaction.channel.id) {
-          if (voteId == interaction.meta[2] || messageId == msg.id) {
+          if (voteId == interaction.meta[2] || messageId == interaction.id) {
            return 
           }          
         }
