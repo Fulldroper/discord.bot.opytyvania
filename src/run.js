@@ -160,11 +160,9 @@
     const { close } = this.commands["create"]
     setInterval((async function() {
       const loop = await this.db.get(`${this.user.username}:loop`)
-      console.log("loop", loop);
       if (!loop || loop.length <= 0) return
       for (const o of loop) {
         if (new Date().getTime() - o.startOn >= o.time) {
-          console.log("close", o)
           close.call(this, o)
         }
       }
