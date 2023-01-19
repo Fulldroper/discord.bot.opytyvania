@@ -158,19 +158,30 @@
     )
     // starting loop
     const { close } = this.commands["create"]
-    while (true) {
-      (async function() {
-        const loop = await this.db.get(`${this.user.username}:loop`)
-        if (!loop || loop.length <= 0) return
-        for (const o of loop) {
-          if (new Date().getTime() - o.startOn >= o.time) {
-            console.log("close", o)
-            close.call(this, o)
-          }
+    setInterval((async function() {
+      const loop = await this.db.get(`${this.user.username}:loop`)
+      console.log("loop", loop);
+      if (!loop || loop.length <= 0) return
+      for (const o of loop) {
+        if (new Date().getTime() - o.startOn >= o.time) {
+          console.log("close", o)
+          close.call(this, o)
         }
-      }).call(this)
-      // wait ms
-      await sleep(process.env.npm_package_config_interval)
-    }
+      }
+    }).bind(this), process.env.npm_package_config_interval);
+  //   while (true) {
+  //     (async function() {
+  //       const loop = await this.db.get(`${this.user.username}:loop`)
+  //       if (!loop || loop.length <= 0) return
+  //       for (const o of loop) {
+  //         if (new Date().getTime() - o.startOn >= o.time) {
+  //           console.log("close", o)
+  //           close.call(this, o)
+  //         }
+  //       }
+  //     }).call(this)
+  //     // wait ms
+  //     await sleep(process.env.npm_package_config_interval)
+  //   }
   })
 })()

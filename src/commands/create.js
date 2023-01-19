@@ -12,7 +12,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
     // })
     // this.log(m_);
     // const msg = m_.entries().next().value[1]
-    let msg = await ch.messages.fetch(messageId);
+    const msg = await ch.messages.fetch(messageId);
     // list variants
     const variants = await this.db.get(
       `${this.user.username}:${guildId}:vote:${voteId}:variants`
@@ -99,13 +99,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
     await msg.edit({
       embeds: [embed[0]],
       components: [],
-    }).catch(() => {
-      msg = await ch.send({
-        embeds: [embed[0]],
-        components: [],
-      }
     })
-
 
     await msg.reply({
       embeds: [
