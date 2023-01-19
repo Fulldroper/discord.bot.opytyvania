@@ -38,7 +38,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
       await this.db.set(`${this.user.username}:loop`, loop);
     }
     // req render
-    const render = this["render"];
+    const render = require("./../render");
     // reform obj
     const result = { users };
     if (!variants) return;
