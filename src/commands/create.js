@@ -37,8 +37,6 @@ async function close({ guildId, voteId, channelId, messageId }) {
     } else {
       await this.db.set(`${this.user.username}:loop`, loop);
     }
-    // req render
-    const render = require("./../render");
     // reform obj
     const result = { users };
     if (!variants) return;
@@ -77,7 +75,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
       `${this.user.username}:${guildId}:vote:${voteId}:userLimit`
     );
     // render res
-    const canvas = (await require("render"))(result);
+    const canvas = await (require("./../render"))(result);
     // edit msg
     const bodyFormData = new (require("form-data"))();
     bodyFormData.append("key", process.env.IMG_TOKEN);
