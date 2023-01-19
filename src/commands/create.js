@@ -10,7 +10,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
     //   before: messageId,
     //   after: messageId,
     // })
-    // console.log(m_);
+    // this.log(m_);
     // const msg = m_.entries().next().value[1]
     const msg = await ch.messages.fetch(messageId);
     // list variants
@@ -116,7 +116,7 @@ async function close({ guildId, voteId, channelId, messageId }) {
     });
     
   } catch (error) {
-    console.log(error);
+    this.error(error);
   }
 }
 
@@ -250,7 +250,7 @@ module.exports.run = async function (interaction) {
             content: `❌ Цей канал не є каналом для публікацій, спробуйте в каналі <#${ref.channel}>.`,
             ephemeral: true,
           })
-          .catch((e) => console.error(e));
+          .catch((e) => this.error(e));
     } else
       interaction
         .reply({
@@ -259,14 +259,14 @@ module.exports.run = async function (interaction) {
           }> для цього`,
           ephemeral: true,
         })
-        .catch((e) => console.error(e));
+        .catch((e) => this.error(e));
   } else
     interaction
       .reply({
         content: `❌ У вас недостатньо прав для виконання команди`,
         ephemeral: true,
       })
-      .catch((e) => console.error(e));
+      .catch((e) => this.error(e));
 };
 
 module.exports.component = async function (interaction) {
@@ -438,7 +438,7 @@ module.exports.component = async function (interaction) {
           ],
           ephemeral: true,
         })
-        .catch((e) => console.log(e));
+        .catch((e) => this.log(e));
       break;
     case "right":
       this.db.set(
@@ -592,7 +592,7 @@ module.exports.modal = async function (interaction) {
         );
         interaction.deferUpdate();
       } catch (error) {
-        console.log(error);
+        this.log(error);
       }
       break;
     case "publish":

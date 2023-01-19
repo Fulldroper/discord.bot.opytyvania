@@ -36,9 +36,9 @@ module.exports.run = async function(interaction) {
     const users = await this.db.get(id2) || []
     if (users.includes(user)) {
       await this.db.filter(id2, u => u !== user)
-      interaction.reply({ content: `Користувачу <@${user}> не має дозволу виконувати команду \`${command}\``, ephemeral: true }).catch(e => console.error(e));
+      interaction.reply({ content: `Користувачу <@${user}> не має дозволу виконувати команду \`${command}\``, ephemeral: true }).catch(e => this.error(e));
     } else {
-      interaction.reply({ content: `Користувачу <@${user}> не мав дозволу виконувати команду \`${command}\``, ephemeral: true }).catch(e => console.error(e));
+      interaction.reply({ content: `Користувачу <@${user}> не мав дозволу виконувати команду \`${command}\``, ephemeral: true }).catch(e => this.error(e));
     }
-  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => console.error(e));
+  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => this.error(e));
 }

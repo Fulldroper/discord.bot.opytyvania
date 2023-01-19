@@ -35,6 +35,6 @@ module.exports.run = async function(interaction) {
     } else {
       content += ' - Немає користувачів'
     }
-    interaction.reply({ content, ephemeral: true }).catch(e => console.error(e));
-  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => console.error(e));
+    interaction.reply({ content, ephemeral: true }).catch(e => this.error(e));
+  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => this.error(e));
 }

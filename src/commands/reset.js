@@ -15,5 +15,5 @@ module.exports.run = async function(interaction) {
       content: `Топ 10 сервера ${interaction.guild.name} очищенно`,
       ephemeral: true 
     })
-  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => console.error(e));
+  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => this.error(e));
 }

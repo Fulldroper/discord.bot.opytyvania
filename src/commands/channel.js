@@ -17,6 +17,6 @@ module.exports.run = async function(interaction) {
   if (interaction.member.permissions.serialize().Administrator || allowed.includes(interaction.member.id)) {
     const ref = interaction.options.get("channel")
       this.db.set(`${this.user.username}:${interaction.guildId}:settings`, {channel: ref.value})
-      interaction.reply({ content: `✅ <#${ref.value}>, встановлено як канал для публікацій.`, ephemeral: true }).catch(e => console.error(e));
-  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => console.error(e));
+      interaction.reply({ content: `✅ <#${ref.value}>, встановлено як канал для публікацій.`, ephemeral: true }).catch(e => this.error(e));
+  } else interaction.reply({ content: '❌ У вас недостатньо прав для виконання команди', ephemeral: true }).catch(e => this.error(e));
 }
