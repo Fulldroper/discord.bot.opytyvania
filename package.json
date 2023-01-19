@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
+    "canvas": "^2.11.0",
     "discord.js": "^14.7.1",
     "fastify": "^4.11.0",
     "fd-dcc": "^2.1.0",

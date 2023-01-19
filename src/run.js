@@ -14,7 +14,6 @@
 		GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildIntegrations
   ] });
-  bot.render = require("./render")
   // catch errors
   const axios = await require("axios").default
   // log function
